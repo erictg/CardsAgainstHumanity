@@ -1,5 +1,5 @@
-package backend;
-
+package backend; 
+import java.util.ArrayList;
 public class User {
 
 	private String name;
@@ -7,6 +7,10 @@ public class User {
 	private String ip;
 	private int holderID;
 	private boolean cardFuhrer;
+	private boolean went;
+	
+	
+	private ArrayList<Card> cards;
 	
 	public User(){
 		name = "";
@@ -14,6 +18,7 @@ public class User {
 		ip = "";
 		holderID = -1;
 		cardFuhrer = false;
+		cards = new ArrayList<Card>();
 	}
 	
 	public User(String name, String ip, int holderID, boolean cardFuhrer){
@@ -22,6 +27,7 @@ public class User {
 		this.ip = ip;
 		this.holderID = holderID;
 		this.cardFuhrer = cardFuhrer;
+		cards = new ArrayList<Card>();
 	}
 
 	public String getName() {
@@ -62,5 +68,48 @@ public class User {
 
 	public void setCardFuhrer(boolean cardFuhrer) {
 		this.cardFuhrer = cardFuhrer;
+	}
+
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+
+	public void setCards(ArrayList<Card> cards) {
+		this.cards = cards;
+	}
+	
+	public void clearDeck(){
+		cards.clear();
+	}
+	
+	public void addCard(Card c){
+		cards.add(c);
+	}
+	
+	public Card removeCard(int cardID){
+
+		for(int x = 0; x < cards.size(); x++){
+			if(cards.get(x).getCardID() == cardID){
+				return cards.remove(x);
+			}
+		}
+		return null;
+	}
+	
+	public int getDeckSize(){
+		return cards.size();
+	}
+	
+	public void setDeckMax(int maxSize){
+		cards.ensureCapacity(maxSize);
+	}
+
+	
+	public boolean hasWent() {
+		return went;
+	}
+
+	public void setWent(boolean went) {
+		this.went = went;
 	}
 }
