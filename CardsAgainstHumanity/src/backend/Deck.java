@@ -20,8 +20,10 @@ public class Deck {
 	
 	public void readInDeck(String deckName) throws IOException, FileNotFoundException{
 		BufferedReader rd = new BufferedReader(new FileReader("src//decks//" + deckName + ".cah"));
+		int id = 0;
 		while(rd.readLine() != null){
-			cards.add(new Card(rd.readLine()));
+			cards.add(new Card(rd.readLine(), id));
+			id++;
 		}
 		rd.close();
 		
