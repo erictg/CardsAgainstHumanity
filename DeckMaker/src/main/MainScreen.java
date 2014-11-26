@@ -64,8 +64,18 @@ public class MainScreen implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == newDeckButton){
+			gui.switchScreens(GUI.SCREENS_NEW_DECK);
+			System.out.println("new deck button clicked");
+		}
 		
+		if(e.getSource() == manageDecksButton){
+			gui.switchScreens(GUI.SCREENS_MANAGE_DECKS);
+		}
 		
+		if(e.getSource() == optionsButton){
+			gui.switchScreens(GUI.SCREENS_OPTIONS);
+		}
 	}
 	
 	
