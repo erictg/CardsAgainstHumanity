@@ -1,11 +1,9 @@
 package backend;
-import java.io.FileOutputStream;
 import java.io.*;
 import javax.xml.bind.*;
 import javax.xml.stream.*;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.annotation.XmlRootElement;
 public class XMLcontrol {
 
 	public static void serializeDeck(Deck d)throws Exception{
@@ -13,7 +11,7 @@ public class XMLcontrol {
 		 Marshaller m = context.createMarshaller();
 		 m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		 m.marshal(d, new File("src//main//test.xml"));
-		 System.out.println("serialized");
+		 //System.out.println("serialized");
 	}
 	
 	public static Deck deserializeDeck()throws Exception{

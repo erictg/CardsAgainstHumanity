@@ -9,6 +9,8 @@ public class Deck {
 	private String deckName;
 	private ArrayList<String> cards = new ArrayList<String>();
 	
+	public static final int BLACK_CARD = 0;
+	public static final int WHITE_CARD = 0;
 	
 	public Deck(){
 		typeID = 0;
