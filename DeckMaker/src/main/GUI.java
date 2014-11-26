@@ -10,6 +10,7 @@ public class GUI{
 	JFrame mainFrame = new JFrame("DeckMaker");
 		JPanel holderPanel = new JPanel();
 	MainScreen mainScreen;
+	
 	public GUI(){
 		mainScreen = new MainScreen(this);
 		holderPanel.add(mainScreen.getMainScreen());
