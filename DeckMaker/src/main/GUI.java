@@ -2,6 +2,7 @@ package main;
 
 import javax.swing.*;
 
+import java.io.File;
 public class GUI{
 
 	//statics
@@ -9,7 +10,16 @@ public class GUI{
 	//main frame
 	JFrame mainFrame = new JFrame("DeckMaker");
 		JPanel holderPanel = new JPanel();
+		
+		
 	MainScreen mainScreen;
+	OptionsScreen optionsScreen;
+	
+	//save stuff
+	//gets location of where the file is running from
+	File saveLocation = new File(System.getProperty("user.dir"));
+	
+	
 	public GUI(){
 		mainScreen = new MainScreen(this);
 		holderPanel.add(mainScreen.getMainScreen());
@@ -57,6 +67,11 @@ public class GUI{
 			break;
 			
 		case SCREENS_OPTIONS:
+			holderPanel.removeAll();
+			optionsScreen = new OptionsScreen(this);
+			holderPanel.add(optionsScreen.getMainPanel());
+			holderPanel.updateUI();
+			System.out.println("changed to options panel");
 			break;
 		
 		default:
@@ -64,5 +79,6 @@ public class GUI{
 			break;
 		}
 	}
+	
 	
 }
