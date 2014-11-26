@@ -46,6 +46,10 @@ public class HomeWindow implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource() == hostButton){
 			gui.switchScreens(GUI.SCREENS_HOST);
+		}else if(e.getSource()== joinButton){
+			gui.switchScreens(GUI.SCREENS_JOIN);
+		}else if(e.getSource()== optionButton){
+			gui.switchScreens(GUI.SCREENS_OPTIONS);
 		}
 	}
 	public JPanel getHomeWindow(){
