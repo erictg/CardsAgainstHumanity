@@ -62,6 +62,8 @@ public class MainScreen implements ActionListener{
 	public JPanel getMainScreen(){
 		return mainPanel;
 	}
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == newDeckButton){
