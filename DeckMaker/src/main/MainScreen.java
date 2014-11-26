@@ -1,12 +1,9 @@
 package main;
 import java.awt.BorderLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.File;
-import java.util.ArrayList;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
-public class MainScreen implements MouseListener{
+public class MainScreen implements ActionListener{
 
 	GUI gui;
 	//main panel
@@ -20,51 +17,57 @@ public class MainScreen implements MouseListener{
 	//Center
 	JPanel mainCenterPanel = new JPanel(); BoxLayout b = new BoxLayout(mainCenterPanel, BoxLayout.Y_AXIS);
 		JPanel newDeckPanel = new JPanel();
-			JButton newDeckButton = new JButton();
-		JPanel loadDeckPanel = new JPanel();
-			JList list; //lists all of the files in the folder
-			String[] fileNames;
-			File[] files;
-	
+			JButton newDeckButton = new JButton("NEW DECK");
+		JPanel manageDecksPanel = new JPanel();
+			JButton manageDecksButton = new JButton("MANAGE DECKS");
+		JPanel optionsPanel = new JPanel();
+			JButton optionsButton = new JButton("OPTIONS");
+			
+	//south
+	JPanel mainSouthPanel = new JPanel();
+		JPanel mainSouthLabelPanel = new JPanel();
+			JLabel mainSouthLabel = new JLabel(GUI.creators);
 	
 	public MainScreen(GUI gui){
 		this.gui = gui;
-		
-	}
-	
-	
-	
-	
-	
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		assemblePanel();
 	}
 
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	//panel assembly
+	private void assemblePanel(){
+		//northern shit
+		northPanel.add(northLabelHolder.add(northLabel));
+		mainPanel.add(BorderLayout.NORTH, northPanel);
 		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		//center
+		mainCenterPanel.setLayout(b);
 		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		newDeckPanel.add(newDeckButton); newDeckButton.addActionListener(this);
+		manageDecksPanel.add(manageDecksButton); manageDecksButton.addActionListener(this);
+		optionsPanel.add(optionsButton); optionsButton.addActionListener(this);
 		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		mainCenterPanel.add(newDeckPanel);
+		mainCenterPanel.add(manageDecksPanel);
+		mainCenterPanel.add(optionsPanel);
+		
+		mainPanel.add(BorderLayout.CENTER, mainCenterPanel);
+		
+		//south
+		mainSouthPanel.add(mainSouthLabelPanel.add(mainSouthLabel));
+		
+		mainPanel.add(BorderLayout.SOUTH, mainSouthPanel);
 		
 	}
 	
-	//north panel
+	public JPanel getMainScreen(){
+		return mainPanel;
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		
+	}
+	
+	
+	
 }
