@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+//import java.io.File;
 
 import javax.swing.*;
 
@@ -22,7 +23,8 @@ public class OptionsScreen implements ActionListener{
 	//centerPanel
 	JPanel mainCenterPanel = new JPanel(new GridLayout(2,1,2,2));
 		//change save location
-		JPanel changeSaveLocation = new JPanel(new GridLayout(1,3,2,2));
+		
+		JPanel changeSaveLocation = new JPanel();BoxLayout b = new BoxLayout(changeSaveLocation, BoxLayout.X_AXIS);
 			JPanel changeSaveLabelHolder = new JPanel();
 				JLabel changeSaveLocationLabel = new JLabel("Save Location");
 			JPanel saveLocationPanel = new JPanel();
@@ -49,11 +51,13 @@ public class OptionsScreen implements ActionListener{
 		changeSaveLabelHolder.add(changeSaveLocationLabel);
 		saveLocationPanel.add(saveLocationArea);
 		saveLocationButtonPanel.add(saveLocationButton); saveLocationButton.addActionListener(this);
-		
+		changeSaveLocation.setLayout(b);
 		changeSaveLocation.add(changeSaveLabelHolder);
 		changeSaveLocation.add(saveLocationPanel);
+		saveLocationArea.setLineWrap(true);
 		changeSaveLocation.add(saveLocationButtonPanel);
-		
+		String path = gui.getSaveLocation().getAbsolutePath();
+		saveLocationArea.setText(path);
 		backButtonHolder.add(backButton); backButton.addActionListener(this);
 		mainCenterPanel.add(changeSaveLocation);
 		mainCenterPanel.add(backButtonHolder);
@@ -73,7 +77,23 @@ public class OptionsScreen implements ActionListener{
 		if(e.getSource() == backButton){
 			gui.switchScreens(GUI.SCREENS_MAIN);
 		}
+		if(e.getSource() == saveLocationButton){
+			JFileChooser file = new JFileChooser(gui.saveLocation);
+			file.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			file.showDialog(new JFrame(), "Select");
+			
+			if(file.getSelectedFile() != null){
+				gui.setFileLocation(file.getSelectedFile());
+				String path = gui.getSaveLocation().getAbsolutePath();
+				saveLocationArea.setText(path);
+			}else{
+				System.out.println("canceled");
+			}
+			
+		}
 	}
+	
+	
 		
 		
 }

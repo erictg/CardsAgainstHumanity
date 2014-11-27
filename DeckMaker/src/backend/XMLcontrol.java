@@ -6,18 +6,18 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 public class XMLcontrol {
 
-	public static void serializeDeck(Deck d)throws Exception{
+	public static void serializeDeck(Deck d, String fileLocation, String fileName)throws Exception{
 		JAXBContext context = JAXBContext.newInstance(Deck.class);
 		 Marshaller m = context.createMarshaller();
 		 m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		 m.marshal(d, new File("src//main//test.xml"));
+		 m.marshal(d, new File(fileLocation + "//" + fileName + ".deck"));
 		 //System.out.println("serialized");
 	}
 	
-	public static Deck deserializeDeck()throws Exception{
+	public static Deck deserializeDeck(String fileLocation, String fileName)throws Exception{
 		JAXBContext jc = JAXBContext.newInstance(Deck.class);
 		XMLInputFactory xif = XMLInputFactory.newFactory();
-        XMLStreamReader xsr = xif.createXMLStreamReader(new FileInputStream("src//main//test.xml"));
+        XMLStreamReader xsr = xif.createXMLStreamReader(new FileInputStream(fileLocation + "//" + fileName + ".deck"));
 		
         Unmarshaller unmarshaller = jc.createUnmarshaller();
         

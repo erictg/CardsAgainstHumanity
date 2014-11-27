@@ -9,23 +9,39 @@ public class GUI{
 	public static String creators = "CREATED BY ERIC SOLENDER, BRADLEY HENRY, AND ALEX HEPPNER";
 	//main frame
 	JFrame mainFrame = new JFrame("DeckMaker");
-		JPanel holderPanel = new JPanel();
+		//JPanel holderPanel = new JPanel();
 		
 		
 	MainScreen mainScreen;
 	OptionsScreen optionsScreen;
-	
+	NewDeckScreen newDeckScreen;
 	//save stuff
 	//gets location of where the file is running from
-	File saveLocation = new File(System.getProperty("user.dir"));
+	File saveLocation;
 	
 	
 	public GUI(){
+		saveLocation = new File(System.getProperty("user.dir"));
 		mainScreen = new MainScreen(this);
-		holderPanel.add(mainScreen.getMainScreen());
-		mainFrame.add(holderPanel);
+		mainFrame.getContentPane().add(mainScreen.getMainScreen());
+		
 		mainFrame.setVisible(true);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 	
 	//screen switching
@@ -39,24 +55,25 @@ public class GUI{
 		switch(screen){
 		case SCREENS_MAIN:
 			//removes everything from the holder\
-			holderPanel.removeAll();
+			mainFrame.getContentPane().removeAll();
 			
 			//instantiates main screen
 			mainScreen = new MainScreen(this);
 			
 			//adds main panel of main screen to holderPanel
-			holderPanel.add(mainScreen.getMainScreen());
+			mainFrame.getContentPane().add(mainScreen.getMainScreen());
 			
 			//updates the draw
-			holderPanel.updateUI();
+			((JPanel) mainFrame.getContentPane()).updateUI();
 			
 			System.out.println("changed to main panel");
 			break;
 		
 		case SCREENS_NEW_DECK:
-			holderPanel.removeAll();
-			holderPanel.add(new JLabel("the fucker worked"));
-			holderPanel.updateUI();
+			mainFrame.getContentPane().removeAll();
+			newDeckScreen = new NewDeckScreen(this);
+			mainFrame.getContentPane().add(newDeckScreen.getMainPanel());
+			((JPanel) mainFrame.getContentPane()).updateUI();
 			System.out.println("changed to new deck panel");
 			break;
 			
@@ -67,10 +84,10 @@ public class GUI{
 			break;
 			
 		case SCREENS_OPTIONS:
-			holderPanel.removeAll();
+			mainFrame.getContentPane().removeAll();
 			optionsScreen = new OptionsScreen(this);
-			holderPanel.add(optionsScreen.getMainPanel());
-			holderPanel.updateUI();
+			mainFrame.getContentPane().add(optionsScreen.getMainPanel());
+			((JPanel) mainFrame.getContentPane()).updateUI();
 			System.out.println("changed to options panel");
 			break;
 		
@@ -78,6 +95,18 @@ public class GUI{
 			System.out.println("INVALID NUMBER :" + screen + " GUI.switchScreens()");
 			break;
 		}
+	}
+	
+	public void setFileLocation(String file){
+		saveLocation = new File(file);
+	}
+	
+	public void setFileLocation(File file){
+		saveLocation = file;
+	}
+	
+	public File getSaveLocation(){
+		return saveLocation;
 	}
 	
 	
