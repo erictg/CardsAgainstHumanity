@@ -28,7 +28,7 @@ public class OptionsScreen implements ActionListener{
 			JPanel changeSaveLabelHolder = new JPanel();
 				JLabel changeSaveLocationLabel = new JLabel("Save Location");
 			JPanel saveLocationPanel = new JPanel();
-				JTextArea saveLocationArea = new JTextArea(1,10);
+				JTextArea saveLocationArea = new JTextArea(1,25);
 			JPanel saveLocationButtonPanel = new JPanel();
 				JButton saveLocationButton = new JButton("...");
 		JPanel backButtonHolder = new JPanel();

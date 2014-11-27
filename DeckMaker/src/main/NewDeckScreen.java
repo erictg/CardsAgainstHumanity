@@ -1,5 +1,7 @@
 package main;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,8 +53,7 @@ public class NewDeckScreen implements ActionListener{
 		
 	//center
 	JPanel mainCenterPanel = new JPanel();
-		JPanel jlistHolder = new JPanel();
-			
+			JScrollPane listScroller = new JScrollPane();
 			JList<String> list = new JList<String>();
 			DefaultListModel<String> listModel = new DefaultListModel<String>();
 	public NewDeckScreen(GUI gui)
@@ -100,15 +101,20 @@ public class NewDeckScreen implements ActionListener{
 		mainSouthPanel.add(back);	back.addActionListener(this);
 		
 		mainPanel.add(BorderLayout.SOUTH, mainSouthPanel);
-		mainCenterPanel.add(jlistHolder.add(list));
+		
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		//listModel.addElement("TEST");
 		list.setModel(listModel);
-		list.setVisibleRowCount(10);
+		list.setVisibleRowCount(20);
 		list.setFixedCellHeight(15);
 		list.setFixedCellWidth(100);
+		list.setBackground(Color.WHITE);
+		listScroller.setPreferredSize(new Dimension(250, 80));
+		listModel.ensureCapacity(54);
+		mainCenterPanel.add(listScroller.add(list));
 		mainPanel.add(BorderLayout.CENTER, mainCenterPanel);
+		list.updateUI();
 	}
 	
 	public JPanel getMainPanel(){
@@ -125,9 +131,16 @@ public class NewDeckScreen implements ActionListener{
 		if(e.getSource() == delete){
 			 int index = list.getSelectedIndex();
 			 deletedStrings.push(listModel.remove(index));
+			 list.updateUI();
 		}
 		
 		if(e.getSource() == add){
+			String newCard = JOptionPane.showInputDialog("NEW CARD");
+			if(!newCard.equals("")){
+				listModel.addElement(newCard);
+				d.addCard(newCard);
+				list.updateUI();
+			}
 			
 		}
 		

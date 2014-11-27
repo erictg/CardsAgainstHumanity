@@ -8,7 +8,6 @@ public class Main {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("unused")
 		GUI g = new GUI();
-		//XMLcontrol.getDecks(new File("src//test"));
 		
 		
 	}
