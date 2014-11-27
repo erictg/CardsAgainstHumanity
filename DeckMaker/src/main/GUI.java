@@ -27,8 +27,10 @@ public class GUI{
 		saveLocation = new File(System.getProperty("user.dir"));
 		mainScreen = new MainScreen(this);
 		mainFrame.getContentPane().add(mainScreen.getMainScreen());
-		
+		mainFrame.setLocationRelativeTo(null);
+		changeScreenSize(400,250);
 		mainFrame.setVisible(true);
+		mainFrame.setResizable(false);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -112,5 +114,8 @@ public class GUI{
 		return saveLocation;
 	}
 	
+	public void changeScreenSize(int x, int y){
+		mainFrame.setSize(x,  y);
+	}
 	
 }

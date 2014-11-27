@@ -9,9 +9,11 @@ import java.io.File;
 import java.util.Stack;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import backend.*;
-public class NewDeckScreen implements ActionListener{
+public class NewDeckScreen implements ActionListener, ListSelectionListener{
 
 	GUI gui;
 	Deck d;
@@ -52,16 +54,13 @@ public class NewDeckScreen implements ActionListener{
 		
 	//center
 	JPanel mainCenterPanel = new JPanel();
-			JScrollPane listScroller = new JScrollPane();
-			JList<String> list = new JList<String>();
+			JList<String> list;
 			DefaultListModel<String> listModel = new DefaultListModel<String>();
 	public NewDeckScreen(GUI gui)
 	{
 		this.gui = gui;
 		assemble();
-		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-		list.setVisibleRowCount(-1);
+		this.gui.changeScreenSize(400,250);
 		d = new Deck();
 	}
 	
@@ -100,17 +99,16 @@ public class NewDeckScreen implements ActionListener{
 		
 		mainPanel.add(BorderLayout.SOUTH, mainSouthPanel);
 		
-		list.setLayoutOrientation(JList.VERTICAL);
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		//listModel.addElement("TEST");
-		list.setModel(listModel);
-		list.setVisibleRowCount(20);
-		list.setFixedCellHeight(15);
-		list.setFixedCellWidth(100);
-		list.setBackground(Color.WHITE);
-		//listScroller.setPreferredSize(new Dimension(250, 80));
-		listModel.ensureCapacity(54);
-		mainCenterPanel.add(listScroller.add(list));
+		listModel.addElement("EXAMPLE RESPONSE");
+		
+		list = new JList<String>(listModel);
+		list.setSelectedIndex(ListSelectionModel.SINGLE_SELECTION);
+		list.setSelectedIndex(0);
+		list.addListSelectionListener(this);
+		list.setVisibleRowCount(10);
+		JScrollPane listScrollPane = new JScrollPane(list);
+	
+		mainCenterPanel.add(listScrollPane);
 		mainPanel.add(BorderLayout.CENTER, mainCenterPanel);
 		list.updateUI();
 	}
@@ -175,6 +173,12 @@ public class NewDeckScreen implements ActionListener{
 				list.updateUI();
 			}
 		}
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 		

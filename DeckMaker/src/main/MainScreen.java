@@ -31,6 +31,7 @@ public class MainScreen implements ActionListener{
 	public MainScreen(GUI gui){
 		this.gui = gui;
 		assemblePanel();
+		this.gui.changeScreenSize(400,250);
 	}
 
 	//panel assembly
