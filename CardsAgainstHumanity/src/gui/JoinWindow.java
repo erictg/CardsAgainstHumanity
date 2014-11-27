@@ -7,9 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class JoinWindow implements ActionListener{
-
 	
-		
 		GUI gui;
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		
@@ -18,7 +16,7 @@ public class JoinWindow implements ActionListener{
 		JLabel title = new JLabel("Join");
 		
 		//centerPanel 
-		JPanel centerPanel = new JPanel();
+		JPanel centerPanel = new JPanel(new GridLayout(2,1,10,10));
 		JButton lanOnline = new JButton("lan");
 		JList servers = new JList();
 		
@@ -40,6 +38,7 @@ public class JoinWindow implements ActionListener{
 			centerPanel.add(servers);
 			//east
 			mainPanel.add(BorderLayout.EAST,eastPanel);
+			eastPanel.add(joinButton);
 			
 		}
 

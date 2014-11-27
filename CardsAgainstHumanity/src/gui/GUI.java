@@ -60,14 +60,14 @@ public class GUI {
 			System.out.println("changed to host panel");
 			break;
 		
-		case SCREENS_GAME:
+		/*case SCREENS_GAME:
 			mainPanel.removeAll();
 			gameWindow = new GameWindow(this);
 			//mainPanel.add(gameWindow.getGameWindow());
 			mainPanel.updateUI();
 			System.out.println("changed to game panel");
 			break;
-			
+			*/
 		case SCREENS_OPTIONS:
 			mainPanel.removeAll();
 			optionsWindow = new OptionWindow(this);
