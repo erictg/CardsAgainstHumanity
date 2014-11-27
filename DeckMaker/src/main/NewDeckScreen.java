@@ -5,11 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Stack;
+
 import javax.swing.*;
 
+import backend.*;
 public class NewDeckScreen implements ActionListener{
 
 	GUI gui;
+	Deck d;
 	Stack<String> deletedStrings = new Stack<String>();
 	//mainPanel
 	JPanel mainPanel = new JPanel(new BorderLayout());
@@ -49,6 +52,7 @@ public class NewDeckScreen implements ActionListener{
 	//center
 	JPanel mainCenterPanel = new JPanel();
 		JPanel jlistHolder = new JPanel();
+			
 			JList<String> list = new JList<String>();
 			DefaultListModel<String> listModel = new DefaultListModel<String>();
 	public NewDeckScreen(GUI gui)
@@ -58,11 +62,18 @@ public class NewDeckScreen implements ActionListener{
 		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		list.setVisibleRowCount(-1);
+		d = new Deck();
 	}
 	
 	public NewDeckScreen(GUI gui, File file){
 		this(gui);
-		
+		try {
+			d = XMLcontrol.deserializeDeck(file);
+		} catch (Exception e) {
+			System.out.println("deserialization failed");
+			d = new Deck();
+			e.printStackTrace();
+		}
 	}
 				
 	private void assemble(){
@@ -98,8 +109,11 @@ public class NewDeckScreen implements ActionListener{
 		mainCenterPanel.add(jlistHolder.add(list));
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listModel.addElement("TEST");
+		//listModel.addElement("TEST");
 		list.setModel(listModel);
+		list.setVisibleRowCount(10);
+		list.setFixedCellHeight(15);
+		list.setFixedCellWidth(100);
 		mainPanel.add(BorderLayout.CENTER, mainCenterPanel);
 	}
 	

@@ -24,4 +24,15 @@ public class XMLcontrol {
 		Deck d = (Deck)unmarshaller.unmarshal(xsr);
 		return d;
 	}
+	public static Deck deserializeDeck(File f)throws Exception{
+		JAXBContext jc = JAXBContext.newInstance(Deck.class);
+		XMLInputFactory xif = XMLInputFactory.newFactory();
+        XMLStreamReader xsr = xif.createXMLStreamReader(new FileInputStream(f));
+		
+        Unmarshaller unmarshaller = jc.createUnmarshaller();
+        
+		Deck d = (Deck)unmarshaller.unmarshal(xsr);
+		return d;
+	}
+	
 }
