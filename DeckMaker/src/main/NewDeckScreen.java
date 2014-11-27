@@ -42,8 +42,7 @@ public class NewDeckScreen implements ActionListener{
 				JComboBox<String> typeDrop = new JComboBox<String>(text);
 				
 	//south
-	JPanel mainSouthPanel = new JPanel(new GridLayout(1,6,2,2));
-		JButton edit = new JButton("EDIT");
+	JPanel mainSouthPanel = new JPanel(new GridLayout(1,5,2,2));
 		JButton add = new JButton("ADD");
 		JButton delete = new JButton("DELETE");
 		JButton save = new JButton("SAVE");
@@ -93,7 +92,6 @@ public class NewDeckScreen implements ActionListener{
 		mainPanel.add(BorderLayout.NORTH, mainNorthPanel);
 		
 		//south
-		mainSouthPanel.add(edit);	edit.addActionListener(this);
 		mainSouthPanel.add(add);	add.addActionListener(this);
 		mainSouthPanel.add(delete);	delete.addActionListener(this);
 		mainSouthPanel.add(undo);	undo.addActionListener(this);
@@ -110,7 +108,7 @@ public class NewDeckScreen implements ActionListener{
 		list.setFixedCellHeight(15);
 		list.setFixedCellWidth(100);
 		list.setBackground(Color.WHITE);
-		listScroller.setPreferredSize(new Dimension(250, 80));
+		//listScroller.setPreferredSize(new Dimension(250, 80));
 		listModel.ensureCapacity(54);
 		mainCenterPanel.add(listScroller.add(list));
 		mainPanel.add(BorderLayout.CENTER, mainCenterPanel);
@@ -131,6 +129,7 @@ public class NewDeckScreen implements ActionListener{
 		if(e.getSource() == delete){
 			 int index = list.getSelectedIndex();
 			 deletedStrings.push(listModel.remove(index));
+			 d.removeCard(deletedStrings.peek());
 			 list.updateUI();
 		}
 		
@@ -145,22 +144,36 @@ public class NewDeckScreen implements ActionListener{
 		}
 		
 		if(e.getSource() == save){
+			if(!nameArea.getText().equals("")){
+				d.setDeckName(nameArea.getText());
+			}else{
+				String deckName = JOptionPane.showInputDialog("ENTER A DECK NAME");
+				nameArea.setText(deckName);
+				d.setDeckName(deckName);
+			}
+			if(typeDrop.getSelectedIndex() == 0){
+				d.setTypeID(Deck.BLACK_CARD);
+			}else{
+				d.setTypeID(Deck.WHITE_CARD);
+			}
 			
-		}
-		
-		if(e.getSource() == edit){
-			int index = list.getSelectedIndex();
-			String newCard = JOptionPane.showInputDialog("NEW CARD");
-			if(!newCard.equals("")){
-				listModel.
-				d.addCard(newCard);
-				list.updateUI();
+			try {
+				XMLcontrol.serializeDeck(d, gui.getSaveLocation().getAbsolutePath());
+			} catch (Exception e1) {
+				System.out.println("serialization failed");
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 			
 		}
-		
+				
 		if(e.getSource() == undo){
-			
+			if(deletedStrings.size() != 0){
+				String undoCard = deletedStrings.pop();
+				listModel.addElement(undoCard);
+				d.addCard(undoCard);
+				list.updateUI();
+			}
 		}
 	}
 

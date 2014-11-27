@@ -8,11 +8,11 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 public class XMLcontrol {
 
-	public static void serializeDeck(Deck d, String fileLocation, String fileName)throws Exception{
+	public static void serializeDeck(Deck d, String fileLocation)throws Exception{
 		JAXBContext context = JAXBContext.newInstance(Deck.class);
 		 Marshaller m = context.createMarshaller();
 		 m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		 m.marshal(d, new File(fileLocation + "//" + fileName + ".deck"));
+		 m.marshal(d, new File(fileLocation + "//" + d.getDeckName() + ".deck"));
 		 //System.out.println("serialized");
 	}
 	
