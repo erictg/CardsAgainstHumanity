@@ -18,11 +18,24 @@ public class GUI{
 	MainScreen mainScreen;
 	OptionsScreen optionsScreen;
 	NewDeckScreen newDeckScreen;
+	ManageDecks manageDecks;
 	//save stuff
 	//gets location of where the file is running from
 	File saveLocation;
 	
+	Deck passer;
+	boolean pass = false;
 	
+	public void setLoadDeckTrue(){
+		pass = true;
+	}
+	public void setLoadDeckFalse(){
+		pass = false;
+	}
+	
+	public void setPasser(Deck passer){
+		this.passer = passer;
+	}
 	public GUI(){
 		saveLocation = new File(System.getProperty("user.dir"));
 		mainScreen = new MainScreen(this);
@@ -76,13 +89,22 @@ public class GUI{
 		
 		case SCREENS_NEW_DECK:
 			mainFrame.getContentPane().removeAll();
-			newDeckScreen = new NewDeckScreen(this);
+			if(pass && passer != null){
+				newDeckScreen = new NewDeckScreen(this, passer);
+			}else{
+				newDeckScreen = new NewDeckScreen(this);
+			}
+			
 			mainFrame.getContentPane().add(newDeckScreen.getMainPanel());
 			((JPanel) mainFrame.getContentPane()).updateUI();
 			System.out.println("changed to new deck panel");
 			break;
 			
 		case SCREENS_MANAGE_DECKS:
+			mainFrame.getContentPane().removeAll();
+			manageDecks = new ManageDecks(this);
+			mainFrame.getContentPane().add(manageDecks.getMainPanel());
+			((JPanel) mainFrame.getContentPane()).updateUI();
 			break;
 		
 		case SCREENS_CUSTOMIZE_DECK:

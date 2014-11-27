@@ -4,14 +4,21 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import backend.Deck;
+import backend.XMLcontrol;
 public class ManageDecks implements ListSelectionListener, ActionListener {
 
 	GUI gui;
-	File[] files;
-	String[] names;
+	ArrayList<Deck> decks;
 	
 	//mainPanel
 	JPanel mainPanel = new JPanel(new BorderLayout());
@@ -34,11 +41,20 @@ public class ManageDecks implements ListSelectionListener, ActionListener {
 		
 	public ManageDecks(GUI gui){
 		this.gui = gui;
+		assemble();
+		decks = XMLcontrol.getDecks(gui.getSaveLocation());
+		if(decks.size() != 0){
+			for(Deck d : decks){
+				listModel.addElement(d.getDeckName());
+			}
+		}else{
+			System.out.println(decks.size());
+		}
 		
 	}
 	
 	public void assemble(){
-		listModel.addElement("EXAMPLE NAME");
+		
 		
 		list = new JList<String>(listModel);
 		list.setSelectedIndex(ListSelectionModel.SINGLE_SELECTION);
@@ -74,8 +90,27 @@ public class ManageDecks implements ListSelectionListener, ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == delete){
+			int index = list.getSelectedIndex();
+			try {
+				Files.deleteIfExists(decks.get(index).getFile().toPath());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			listModel.remove(index);
+			decks.remove(index);
+		}
+		if(e.getSource() == back){
+			gui.switchScreens(GUI.SCREENS_MAIN);
+		}
 		
+		if(e.getSource() == edit){
+			gui.setLoadDeckTrue();
+			gui.setPasser(decks.get(list.getSelectedIndex()));
+			gui.switchScreens(GUI.SCREENS_NEW_DECK);
+			
+		}
 	}
 }

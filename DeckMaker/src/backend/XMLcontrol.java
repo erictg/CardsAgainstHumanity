@@ -41,16 +41,20 @@ public class XMLcontrol {
 		File[] listOfFiles = file.listFiles();
 		ArrayList<Deck> d = new ArrayList<Deck>();
 		for(File f: listOfFiles){
-			if(f.getAbsolutePath().split("\\.")[1].equals("deck")){
-				System.out.println(f.getAbsolutePath());
-				try {
-					d.add(deserializeDeck(f));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			System.out.println(f.getAbsolutePath());
+			if(f.getAbsolutePath().indexOf("deck") != -1){
+				if(f.getAbsolutePath().split("\\.")[1].equals("deck")){
+					System.out.println(f.getAbsolutePath());
+					try {
+						d.add(deserializeDeck(f));
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
+			}else{
+				System.out.println(f.getAbsolutePath().indexOf("deck"));
 			}
-			
 		}
 		
 		return d;

@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 //import java.io.File;
 import java.util.Stack;
 
@@ -67,6 +68,11 @@ public class NewDeckScreen implements ActionListener, ListSelectionListener{
 	public NewDeckScreen(GUI gui, Deck d){
 		this(gui);
 		this.d = d;
+		listModel.clear();
+		for(String card : d.getCards()){
+			listModel.addElement(card);
+		}
+		nameArea.setText(d.getDeckName());
 	}
 				
 	private void assemble(){
@@ -155,6 +161,7 @@ public class NewDeckScreen implements ActionListener, ListSelectionListener{
 				d.setTypeID(Deck.WHITE_CARD);
 			}
 			
+			d.setFile(new File(gui.getSaveLocation() + "//" + d.getDeckName() + ".deck"));
 			try {
 				XMLcontrol.serializeDeck(d, gui.getSaveLocation().getAbsolutePath());
 			} catch (Exception e1) {
