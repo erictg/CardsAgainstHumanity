@@ -1,9 +1,59 @@
 package gui;
 
-public class JoinWindow {
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
 
-	public JoinWindow(GUI gui) {
-		// TODO Auto-generated constructor stub
+public class JoinWindow implements ActionListener{
+
+	
+		
+		GUI gui;
+		JPanel mainPanel = new JPanel(new BorderLayout());
+		
+		//northPanel
+		JPanel northPanel = new JPanel();
+		JLabel title = new JLabel("Join");
+		
+		//centerPanel 
+		JPanel centerPanel = new JPanel();
+		JButton lanOnline = new JButton("lan");
+		JList servers = new JList();
+		
+		//east panel
+		JPanel eastPanel = new JPanel();
+		JButton joinButton = new JButton("Join");
+		
+		public JoinWindow(GUI gui) {
+			this.gui = gui;
+			assemble();
+		}
+		
+		public void assemble(){
+			//north
+			mainPanel.add(BorderLayout.NORTH,northPanel);
+			northPanel.add(title);
+			//center
+			mainPanel.add(BorderLayout.CENTER,centerPanel);
+			centerPanel.add(servers);
+			//east
+			mainPanel.add(BorderLayout.EAST,eastPanel);
+			
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e){
+			// TODO Auto-generated method stub
+			if(e.getSource() == joinButton){
+				gui.switchScreens(GUI.SCREENS_GAME);
+			}
+		}
+		public JPanel getJoinWindow(){
+			return mainPanel;
+		}
+		
 	}
 
 }

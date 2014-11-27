@@ -4,9 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
-;
+
 
 public class HostWindow implements ActionListener{
 	GUI gui;
@@ -27,9 +26,21 @@ public class HostWindow implements ActionListener{
 	JTextArea port = new JTextArea(1,15);
 	JLabel portLabel = new JLabel("Port:");
 	JButton start = new JButton("Start!");
-	public HostWindow(GUI gui){
-		this.gui = gui;
-		assemble();
+		public HostWindow(GUI gui){
+			this.gui = gui;
+			assemble();
+		}
+	
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == start){
+			//////make server here
+			//Host();
+			
+			gui.switchScreens(GUI.SCREENS_GAME);
+		}
 	}
 	
 	public void assemble(){
@@ -44,24 +55,12 @@ public class HostWindow implements ActionListener{
 		mainPanel.add(players);
 		mainPanel.add(lanOnlineLabel);
 		mainPanel.add(lanOnline);
+		lanOnline.addActionListener(this);
 		mainPanel.add(portLabel);
 		mainPanel.add(port);
 		mainPanel.add(start);
 		start.addActionListener(this);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource() == start){
-			//////make server here
-			//Host();
-			
-			gui.switchScreens(GUI.SCREENS_GAME);
-		}
-	}
-	
-
 	public JPanel getHostWindow(){
 		return mainPanel;
 	}
