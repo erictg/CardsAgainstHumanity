@@ -15,7 +15,7 @@ public class Deck {
 	public Deck(){
 		typeID = 0;
 		deckName = "";
-		addCard("default");
+		//addCard("default");
 	}
 	public Deck(int typeID, String deckName){
 		this.typeID = typeID;

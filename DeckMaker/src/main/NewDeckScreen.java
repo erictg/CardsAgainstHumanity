@@ -1,11 +1,11 @@
 package main;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
+//import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+//import java.io.File;
 import java.util.Stack;
 
 import javax.swing.*;
@@ -40,7 +40,7 @@ public class NewDeckScreen implements ActionListener, ListSelectionListener{
 			JPanel typeLabelPanel = new JPanel();
 				JLabel typeLabel = new JLabel("TYPE");
 			JPanel typeDropDownHolder = new JPanel();
-				String[] text = {"BLACK", "WHITE"};
+				String[] text = {"QUESTION", "ANSWER"};
 				JComboBox<String> typeDrop = new JComboBox<String>(text);
 				
 	//south
@@ -144,10 +144,10 @@ public class NewDeckScreen implements ActionListener, ListSelectionListener{
 		if(e.getSource() == save){
 			if(!nameArea.getText().equals("")){
 				d.setDeckName(nameArea.getText());
+				nameArea.setBackground(Color.white);
 			}else{
-				String deckName = JOptionPane.showInputDialog("ENTER A DECK NAME");
-				nameArea.setText(deckName);
-				d.setDeckName(deckName);
+				nameArea.setBackground(Color.RED);
+				return;
 			}
 			if(typeDrop.getSelectedIndex() == 0){
 				d.setTypeID(Deck.BLACK_CARD);
