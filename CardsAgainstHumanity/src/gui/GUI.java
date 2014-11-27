@@ -4,7 +4,6 @@ import java.awt.GridLayout;
 
 import javax.swing.*;
 
-import main.MainScreen;
 
 public class GUI {
 
@@ -12,6 +11,10 @@ public class GUI {
 	JFrame mainFrame = new JFrame("CARDS AGAINST HUMANITY");
 	JPanel mainPanel = new JPanel();
 	HomeWindow mainScreen;
+	JoinWindow joinWindow;
+	HostWindow hostWindow;
+	OptionWindow optionsWindow;
+	GameWindow gameWindow;
 	//statics
 	public static String creators = "CREATED BY ERIC SOLENDER, BRADLEY HENRY, AND ALEX HEPPNER";
 	public static final int SCREENS_HOME = 0;
@@ -43,28 +46,32 @@ public class GUI {
 		
 		case SCREENS_JOIN:
 			mainPanel.removeAll();
-			mainScreen = new JoinWindow(this);
+			joinWindow= new JoinWindow(this);
+			mainPanel.add(joinWindow.getJoinWindow());
 			mainPanel.updateUI();
 			System.out.println("changed to join panel");
 			break;
 			
 		case SCREENS_HOST:
 			mainPanel.removeAll();
-			mainScreen = new HostWindow(this);
+			hostWindow= new HostWindow(this);
+			mainPanel.add(hostWindow.getHostWindow());
 			mainPanel.updateUI();
 			System.out.println("changed to host panel");
 			break;
 		
 		case SCREENS_GAME:
 			mainPanel.removeAll();
-			mainScreen = new GameWindow(this);
+			gameWindow = new GameWindow(this);
+			//mainPanel.add(gameWindow.getGameWindow());
 			mainPanel.updateUI();
 			System.out.println("changed to game panel");
 			break;
 			
 		case SCREENS_OPTIONS:
 			mainPanel.removeAll();
-			mainScreen = new OptionWindow(this);
+			optionsWindow = new OptionWindow(this);
+			//mainPanel.add(optionsWindow.)
 			mainPanel.updateUI();
 			System.out.println("changed to game panel");
 			break;

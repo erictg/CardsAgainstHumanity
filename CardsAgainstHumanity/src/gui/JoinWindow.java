@@ -56,4 +56,4 @@ public class JoinWindow implements ActionListener{
 		
 	}
 
-}
+

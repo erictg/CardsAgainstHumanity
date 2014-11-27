@@ -149,6 +149,13 @@ public class NewDeckScreen implements ActionListener{
 		}
 		
 		if(e.getSource() == edit){
+			int index = list.getSelectedIndex();
+			String newCard = JOptionPane.showInputDialog("NEW CARD");
+			if(!newCard.equals("")){
+				listModel.
+				d.addCard(newCard);
+				list.updateUI();
+			}
 			
 		}
 		
