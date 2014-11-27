@@ -65,15 +65,9 @@ public class NewDeckScreen implements ActionListener{
 		d = new Deck();
 	}
 	
-	public NewDeckScreen(GUI gui, File file){
+	public NewDeckScreen(GUI gui, Deck d){
 		this(gui);
-		try {
-			d = XMLcontrol.deserializeDeck(file);
-		} catch (Exception e) {
-			System.out.println("deserialization failed");
-			d = new Deck();
-			e.printStackTrace();
-		}
+		this.d = d;
 	}
 				
 	private void assemble(){

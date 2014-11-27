@@ -1,5 +1,7 @@
 package backend;
 import java.io.*;
+import java.util.ArrayList;
+
 import javax.xml.bind.*;
 import javax.xml.stream.*;
 import javax.xml.bind.JAXBContext;
@@ -32,6 +34,25 @@ public class XMLcontrol {
         Unmarshaller unmarshaller = jc.createUnmarshaller();
         
 		Deck d = (Deck)unmarshaller.unmarshal(xsr);
+		return d;
+	}
+	
+	public static ArrayList<Deck> getDecks(File file){
+		File[] listOfFiles = file.listFiles();
+		ArrayList<Deck> d = new ArrayList<Deck>();
+		for(File f: listOfFiles){
+			if(f.getAbsolutePath().split("\\.")[1].equals("deck")){
+				System.out.println(f.getAbsolutePath());
+				try {
+					d.add(deserializeDeck(f));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		
 		return d;
 	}
 	

@@ -2,7 +2,10 @@ package main;
 
 import javax.swing.*;
 
+import backend.Deck;
+
 import java.io.File;
+import java.util.ArrayList;
 public class GUI{
 
 	//statics
@@ -11,7 +14,7 @@ public class GUI{
 	JFrame mainFrame = new JFrame("DeckMaker");
 		//JPanel holderPanel = new JPanel();
 		
-		
+	ArrayList<Deck> d = new ArrayList<Deck>();	
 	MainScreen mainScreen;
 	OptionsScreen optionsScreen;
 	NewDeckScreen newDeckScreen;
