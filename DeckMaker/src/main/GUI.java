@@ -37,8 +37,8 @@ public class GUI{
 		this.passer = passer;
 	}
 	public GUI(){
-		//saveLocation = new File(System.getProperty("user.dir"));
-		saveLocation = new File("C:\\Program Files (x86)\\Cards Against Humanity\\Decks");
+		saveLocation = new File(System.getProperty("user.dir") + "//decks");
+		//saveLocation = new File("C:\\Program Files (x86)\\Cards Against Humanity\\Decks");
 		mainScreen = new MainScreen(this);
 		mainFrame.getContentPane().add(mainScreen.getMainScreen());
 		mainFrame.setLocationRelativeTo(null);
@@ -144,7 +144,7 @@ public class GUI{
 	
 	//make sure file is there
 	public void decksFile(){
-		File p = new File("C:\\Program Files (x86)\\Cards Against Humanity\\Decks");
+		File p = new File(saveLocation.getAbsolutePath());
 		if(!java.nio.file.Files.exists(p.toPath())){
 			System.out.println(p.mkdirs());
 		}
