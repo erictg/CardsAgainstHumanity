@@ -5,6 +5,7 @@ import javax.swing.*;
 import backend.Deck;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 public class GUI{
 
@@ -37,7 +38,8 @@ public class GUI{
 		this.passer = passer;
 	}
 	public GUI(){
-		saveLocation = new File(System.getProperty("user.dir"));
+		//saveLocation = new File(System.getProperty("user.dir"));
+		saveLocation = new File("C:\\Program Files (x86)\\Cards Against Humanity\\Decks");
 		mainScreen = new MainScreen(this);
 		mainFrame.getContentPane().add(mainScreen.getMainScreen());
 		mainFrame.setLocationRelativeTo(null);
@@ -45,6 +47,7 @@ public class GUI{
 		mainFrame.setVisible(true);
 		mainFrame.setResizable(false);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		decksFile();
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e1) {
@@ -138,6 +141,15 @@ public class GUI{
 	
 	public void changeScreenSize(int x, int y){
 		mainFrame.setSize(x,  y);
+	}
+	
+	//make sure file is there
+	public void decksFile(){
+		File p = new File("C:\\Program Files (x86)\\Cards Against Humanity\\Decks");
+		if(!java.nio.file.Files.exists(p.toPath())){
+			System.out.println(p.mkdirs());
+		}
+
 	}
 	
 }

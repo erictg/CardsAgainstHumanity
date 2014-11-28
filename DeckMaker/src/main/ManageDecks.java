@@ -50,7 +50,7 @@ public class ManageDecks implements ListSelectionListener, ActionListener {
 		}else{
 			System.out.println(decks.size());
 		}
-		
+	
 	}
 	
 	public void assemble(){
