@@ -1,12 +1,10 @@
 package gui;
 
-import java.awt.GridLayout;
-
 import javax.swing.*;
 
 
 public class GUI {
-
+	GUI gui;
 	//main panel for all GUI windows
 	JFrame mainFrame = new JFrame("CARDS AGAINST HUMANITY");
 	JPanel mainPanel = new JPanel();
@@ -23,10 +21,15 @@ public class GUI {
 	public static final int SCREENS_OPTIONS = 3;
 	public static final int SCREENS_GAME = 4;
 	public GUI(){
+		
 		mainFrame.add(mainPanel);
 		mainFrame.setVisible(true);
+		mainFrame.setSize(800,600);
+		mainFrame.setLocationRelativeTo(null);
 		System.out.println("work");
 		
+		switchScreens(GUI.SCREENS_HOME);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	public void switchScreens(int screen){
 		switch(screen){
@@ -37,7 +40,7 @@ public class GUI {
 			//instantiates main screen
 			mainScreen = new HomeWindow(this);
 			
-			//adds main panel of main screen to holderPanel
+			//adds main panel of main screen to JFrame
 			mainPanel.add(mainScreen.getHomeWindow());
 			
 			//updates the draw
@@ -62,18 +65,18 @@ public class GUI {
 			System.out.println("changed to host panel");
 			break;
 		
-		/*case SCREENS_GAME:
+		case SCREENS_GAME:
 			mainPanel.removeAll();
 			gameWindow = new GameWindow(this);
-			//mainPanel.add(gameWindow.getGameWindow());
+			mainPanel.add(gameWindow.getGameWindow());
 			mainPanel.updateUI();
 			System.out.println("changed to game panel");
 			break;
-			*/
+			
 		case SCREENS_OPTIONS:
 			mainPanel.removeAll();
 			optionsWindow = new OptionWindow(this);
-			//mainPanel.add(optionsWindow.)
+			mainPanel.add(optionsWindow.getOptionWindow());
 			mainPanel.updateUI();
 			System.out.println("changed to game panel");
 			break;

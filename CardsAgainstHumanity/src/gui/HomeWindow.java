@@ -14,13 +14,14 @@ public class HomeWindow implements ActionListener{
 	
 	//northPanel
 	JPanel northPanel = new JPanel();
-	JLabel title = new JLabel("If you dont know what to do then...wow you're dumb");
+	JLabel title = new JLabel("Home");
 	
 	//centerPanel 
-	JPanel centerPanel = new JPanel(new GridLayout(3,1,5,5));
-	JButton hostButton = new JButton();
-	JButton joinButton = new JButton();
-	JButton optionButton = new JButton();
+	JPanel centerPanel = new JPanel(new GridLayout(4,1,5,5));
+	JButton hostButton = new JButton("Host");
+	JButton joinButton = new JButton("Join");
+	JButton optionButton = new JButton("Options");
+	JButton homeButton = new JButton("Home");
 	
 	public HomeWindow(GUI gui){
 		this.gui = gui;
@@ -39,6 +40,8 @@ public class HomeWindow implements ActionListener{
 		joinButton.addActionListener(this);
 		centerPanel.add(optionButton);
 		optionButton.addActionListener(this);
+		
+		
 	}
 
 	@Override
@@ -46,10 +49,15 @@ public class HomeWindow implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource() == hostButton){
 			gui.switchScreens(GUI.SCREENS_HOST);
-		}else if(e.getSource()== joinButton){
+		}
+		if(e.getSource()== joinButton){
 			gui.switchScreens(GUI.SCREENS_JOIN);
-		}else if(e.getSource()== optionButton){
+		}
+		if(e.getSource()== optionButton){
 			gui.switchScreens(GUI.SCREENS_OPTIONS);
+		}
+		if(e.getSource() == homeButton){
+			gui.switchScreens(GUI.SCREENS_HOME);
 		}
 	}
 	public JPanel getHomeWindow(){

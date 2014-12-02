@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class JoinWindow implements ActionListener{
@@ -20,9 +21,11 @@ public class JoinWindow implements ActionListener{
 		JButton lanOnline = new JButton("lan");
 		JList servers = new JList();
 		
+		
 		//east panel
 		JPanel eastPanel = new JPanel();
 		JButton joinButton = new JButton("Join");
+		JButton homeButton = new JButton("Home");
 		
 		public JoinWindow(GUI gui) {
 			this.gui = gui;
@@ -39,6 +42,8 @@ public class JoinWindow implements ActionListener{
 			//east
 			mainPanel.add(BorderLayout.EAST,eastPanel);
 			eastPanel.add(joinButton);
+			centerPanel.add(homeButton);
+			homeButton.addActionListener(this);
 			
 		}
 
@@ -47,6 +52,9 @@ public class JoinWindow implements ActionListener{
 			// TODO Auto-generated method stub
 			if(e.getSource() == joinButton){
 				gui.switchScreens(GUI.SCREENS_GAME);
+			}
+			if(e.getSource() == homeButton){
+				gui.switchScreens(GUI.SCREENS_HOME);
 			}
 		}
 		public JPanel getJoinWindow(){

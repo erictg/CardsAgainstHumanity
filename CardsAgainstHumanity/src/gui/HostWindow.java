@@ -26,6 +26,7 @@ public class HostWindow implements ActionListener{
 	JTextArea port = new JTextArea(1,15);
 	JLabel portLabel = new JLabel("Port:");
 	JButton start = new JButton("Start!");
+	JButton homeButton = new JButton("Home");
 		public HostWindow(GUI gui){
 			this.gui = gui;
 			assemble();
@@ -41,25 +42,36 @@ public class HostWindow implements ActionListener{
 			
 			gui.switchScreens(GUI.SCREENS_GAME);
 		}
+		if(e.getSource()==lanOnline){
+			if(lanOnline.getText()=="Lan"){
+				lanOnline.setText("Online");
+			}else
+				lanOnline.setText("Lan");
+		}
+		if(e.getSource() == homeButton){
+			gui.switchScreens(GUI.SCREENS_HOME);
+		}
 	}
 	
 	public void assemble(){
 		
 		//center
 		mainPanel.add(BorderLayout.CENTER,centerPanel);
-		mainPanel.add(nameLabel);
-		mainPanel.add(name);
-		mainPanel.add(passwordLabel);
-		mainPanel.add(password);
-		mainPanel.add(playersLabel);
-		mainPanel.add(players);
-		mainPanel.add(lanOnlineLabel);
-		mainPanel.add(lanOnline);
+		centerPanel.add(nameLabel);
+		centerPanel.add(name);
+		centerPanel.add(passwordLabel);
+		centerPanel.add(password);
+		centerPanel.add(playersLabel);
+		centerPanel.add(players);
+		centerPanel.add(lanOnlineLabel);
+		centerPanel.add(lanOnline);
 		lanOnline.addActionListener(this);
-		mainPanel.add(portLabel);
-		mainPanel.add(port);
-		mainPanel.add(start);
+		centerPanel.add(portLabel);
+		centerPanel.add(port);
+		centerPanel.add(start);
 		start.addActionListener(this);
+		centerPanel.add(homeButton);
+		homeButton.addActionListener(this);
 	}
 	public JPanel getHostWindow(){
 		return mainPanel;
