@@ -24,6 +24,8 @@ public class GUI {
 	public static final int SCREENS_GAME = 4;
 	public GUI(){
 		mainFrame.add(mainPanel);
+		mainFrame.setVisible(true);
+		System.out.println("work");
 		
 	}
 	public void switchScreens(int screen){
