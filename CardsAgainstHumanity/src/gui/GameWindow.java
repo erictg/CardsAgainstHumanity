@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,8 @@ public class GameWindow implements ActionListener{
 		//east panel
 		JButton homeButton = new JButton("Home");
 		
+		Color greenButton = new Color (5,210,32);
+		
 		public GameWindow(GUI gui) {
 			this.gui = gui;
 			assemble();
@@ -33,7 +36,11 @@ public class GameWindow implements ActionListener{
 			eastPanel.add(title);
 			eastPanel.add(homeButton);
 			homeButton.addActionListener(this);
+			homeButton.setBackground(greenButton);
 			
+			
+			eastPanel.setOpaque(false);
+			mainPanel.setOpaque(false);
 			
 		}
 

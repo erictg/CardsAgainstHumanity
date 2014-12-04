@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +28,8 @@ public class JoinWindow implements ActionListener{
 		JButton joinButton = new JButton("Join");
 		JButton homeButton = new JButton("Home");
 		
+		Color greenButton = new Color (5,210,32);
+		
 		public JoinWindow(GUI gui) {
 			this.gui = gui;
 			assemble();
@@ -42,8 +45,16 @@ public class JoinWindow implements ActionListener{
 			//east
 			mainPanel.add(BorderLayout.EAST,eastPanel);
 			eastPanel.add(joinButton);
+			joinButton.addActionListener(this);
+			joinButton.setBackground(greenButton);
 			centerPanel.add(homeButton);
+			homeButton.setBackground(greenButton);
 			homeButton.addActionListener(this);
+			
+			centerPanel.setOpaque(false);
+			mainPanel.setOpaque(false);
+			eastPanel.setOpaque(false);
+			northPanel.setOpaque(false);
 			
 		}
 

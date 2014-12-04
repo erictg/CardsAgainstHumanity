@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Color;
+
 import javax.swing.*;
 
 
@@ -13,6 +15,8 @@ public class GUI {
 	HostWindow hostWindow;
 	OptionWindow optionsWindow;
 	GameWindow gameWindow;
+	Color greenBackground = new Color (52,229,76);
+	Color greenButton = new Color (5,210,32);
 	//statics
 	public static String creators = "CREATED BY ERIC SOLENDER, BRADLEY HENRY, AND ALEX HEPPNER";
 	public static final int SCREENS_HOME = 0;
@@ -27,9 +31,27 @@ public class GUI {
 		mainFrame.setSize(800,600);
 		mainFrame.setLocationRelativeTo(null);
 		System.out.println("work");
+		mainPanel.setBackground(greenBackground);
 		
 		switchScreens(GUI.SCREENS_HOME);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		/*try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	*/
 	}
 	public void switchScreens(int screen){
 		switch(screen){

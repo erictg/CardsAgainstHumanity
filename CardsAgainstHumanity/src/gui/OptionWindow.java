@@ -1,9 +1,11 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
 ;
 
@@ -22,7 +24,7 @@ public class OptionWindow implements ActionListener{
 	
 	
 	
-	
+	Color greenButton = new Color (5,210,32);
 	
 	public OptionWindow(GUI gui) {
 	this.gui = gui;
@@ -35,9 +37,15 @@ public class OptionWindow implements ActionListener{
 			//center
 			mainPanel.add(BorderLayout.CENTER,centerPanel);
 			centerPanel.add(optionsButton);
+			optionsButton.setBackground(greenButton);
 			optionsButton.addActionListener(this);
 			centerPanel.add(homeButton);
+			homeButton.setBackground(greenButton);
 			homeButton.addActionListener(this);
+			
+			centerPanel.setOpaque(false);
+			mainPanel.setOpaque(false);
+			northPanel.setOpaque(false);
 		}
 
 		@Override

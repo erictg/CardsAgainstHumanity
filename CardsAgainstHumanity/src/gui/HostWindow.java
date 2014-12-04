@@ -1,9 +1,11 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 
@@ -27,6 +29,7 @@ public class HostWindow implements ActionListener{
 	JLabel portLabel = new JLabel("Port:");
 	JButton start = new JButton("Start!");
 	JButton homeButton = new JButton("Home");
+	Color greenButton = new Color (5,210,32);
 		public HostWindow(GUI gui){
 			this.gui = gui;
 			assemble();
@@ -65,13 +68,18 @@ public class HostWindow implements ActionListener{
 		centerPanel.add(players);
 		centerPanel.add(lanOnlineLabel);
 		centerPanel.add(lanOnline);
+		lanOnline.setBackground(greenButton);
 		lanOnline.addActionListener(this);
 		centerPanel.add(portLabel);
 		centerPanel.add(port);
 		centerPanel.add(start);
+		start.setBackground(greenButton);
 		start.addActionListener(this);
 		centerPanel.add(homeButton);
+		homeButton.setBackground(greenButton);
 		homeButton.addActionListener(this);
+		centerPanel.setOpaque(false);
+		mainPanel.setOpaque(false);
 	}
 	public JPanel getHostWindow(){
 		return mainPanel;

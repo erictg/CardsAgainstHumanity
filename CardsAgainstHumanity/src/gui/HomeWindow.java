@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +24,8 @@ public class HomeWindow implements ActionListener{
 	JButton optionButton = new JButton("Options");
 	JButton homeButton = new JButton("Home");
 	
+	Color greenBackground = new Color (52,229,76);
+	Color greenButton = new Color (5,210,32);
 	public HomeWindow(GUI gui){
 		this.gui = gui;
 		assemble();
@@ -32,15 +35,35 @@ public class HomeWindow implements ActionListener{
 		//north
 		mainPanel.add(BorderLayout.NORTH,northPanel);
 		northPanel.add(title);
+		northPanel.setBackground(greenBackground);
 		//center
 		mainPanel.add(BorderLayout.CENTER,centerPanel);
+		mainPanel.setBackground(greenBackground);
 		centerPanel.add(hostButton);
+		centerPanel.setOpaque(false);
+		hostButton.setBackground(greenButton);
 		hostButton.addActionListener(this);
 		centerPanel.add(joinButton);
+		joinButton.setBackground(greenButton);
 		joinButton.addActionListener(this);
 		centerPanel.add(optionButton);
+		optionButton.setBackground(greenButton);
 		optionButton.addActionListener(this);
-		
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 	}
 
