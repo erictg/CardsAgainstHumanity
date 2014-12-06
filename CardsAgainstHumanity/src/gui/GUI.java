@@ -61,7 +61,7 @@ public class GUI {
 			
 			//instantiates main screen
 			mainScreen = new HomeWindow(this);
-			
+			mainScreen.setColors();
 			//adds main panel of main screen to JFrame
 			mainPanel.add(mainScreen.getHomeWindow());
 			

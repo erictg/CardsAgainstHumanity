@@ -35,7 +35,6 @@ public class HomeWindow implements ActionListener{
 		//north
 		mainPanel.add(BorderLayout.NORTH,northPanel);
 		northPanel.add(title);
-		northPanel.setBackground(greenBackground);
 		//center
 		mainPanel.add(BorderLayout.CENTER,centerPanel);
 		mainPanel.setBackground(greenBackground);
@@ -44,11 +43,13 @@ public class HomeWindow implements ActionListener{
 		hostButton.setBackground(greenButton);
 		hostButton.addActionListener(this);
 		centerPanel.add(joinButton);
-		joinButton.setBackground(greenButton);
+		//joinButton.setBackground(greenButton);
 		joinButton.addActionListener(this);
 		centerPanel.add(optionButton);
 		optionButton.setBackground(greenButton);
 		optionButton.addActionListener(this);
+		title.setBackground(greenButton);
+
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e1) {
@@ -84,9 +85,20 @@ public class HomeWindow implements ActionListener{
 		}
 	}
 	public JPanel getHomeWindow(){
+		setColors();
 		return mainPanel;
 	}
-	
+	public void setColors(){
+		northPanel.setBackground(Color.ORANGE);
+		mainPanel.setBackground(greenBackground);
+		centerPanel.add(hostButton);
+		centerPanel.setOpaque(true);
+		centerPanel.setBackground(Color.ORANGE);
+		hostButton.setBackground(greenButton);
+		this.joinButton.setBackground(greenButton);
+		title.setBackground(greenButton);
+		System.out.println("bleh");
+	}
 	
 	
 }
