@@ -8,10 +8,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class HomeWindow implements ActionListener{
+public class HomeWindow extends JPanel implements ActionListener{
 	
 	GUI gui;
-	JPanel mainPanel = new JPanel(new BorderLayout());
 	
 	//northPanel
 	JPanel northPanel = new JPanel();
@@ -27,17 +26,18 @@ public class HomeWindow implements ActionListener{
 	Color greenBackground = new Color (52,229,76);
 	Color greenButton = new Color (5,210,32);
 	public HomeWindow(GUI gui){
+		super(new BorderLayout());
 		this.gui = gui;
 		assemble();
 	}
 	
 	public void assemble(){
 		//north
-		mainPanel.add(BorderLayout.NORTH,northPanel);
+		add(BorderLayout.NORTH,northPanel);
 		northPanel.add(title);
 		//center
-		mainPanel.add(BorderLayout.CENTER,centerPanel);
-		mainPanel.setBackground(greenBackground);
+		add(BorderLayout.CENTER,centerPanel);
+		setBackground(greenBackground);
 		centerPanel.add(hostButton);
 		centerPanel.setOpaque(false);
 		hostButton.setBackground(greenButton);
@@ -84,13 +84,10 @@ public class HomeWindow implements ActionListener{
 			gui.switchScreens(GUI.SCREENS_HOME);
 		}
 	}
-	public JPanel getHomeWindow(){
-		setColors();
-		return mainPanel;
-	}
+	
 	public void setColors(){
 		northPanel.setBackground(Color.ORANGE);
-		mainPanel.setBackground(greenBackground);
+		setBackground(greenBackground);
 		centerPanel.add(hostButton);
 		centerPanel.setOpaque(true);
 		centerPanel.setBackground(Color.ORANGE);

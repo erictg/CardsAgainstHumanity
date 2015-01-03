@@ -8,10 +8,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class JoinWindow implements ActionListener{
+public class JoinWindow extends JPanel implements ActionListener{
 	
 		GUI gui;
-		JPanel mainPanel = new JPanel(new BorderLayout());
 		
 		//northPanel
 		JPanel northPanel = new JPanel();
@@ -31,19 +30,20 @@ public class JoinWindow implements ActionListener{
 		Color greenButton = new Color (5,210,32);
 		
 		public JoinWindow(GUI gui) {
+			super(new BorderLayout());
 			this.gui = gui;
 			assemble();
 		}
 		
 		public void assemble(){
 			//north
-			mainPanel.add(BorderLayout.NORTH,northPanel);
+			add(BorderLayout.NORTH,northPanel);
 			northPanel.add(title);
 			//center
-			mainPanel.add(BorderLayout.CENTER,centerPanel);
+			add(BorderLayout.CENTER,centerPanel);
 			centerPanel.add(servers);
 			//east
-			mainPanel.add(BorderLayout.EAST,eastPanel);
+			add(BorderLayout.EAST,eastPanel);
 			eastPanel.add(joinButton);
 			joinButton.addActionListener(this);
 			joinButton.setBackground(greenButton);
@@ -52,7 +52,7 @@ public class JoinWindow implements ActionListener{
 			homeButton.addActionListener(this);
 			
 			centerPanel.setOpaque(false);
-			mainPanel.setOpaque(false);
+			setOpaque(false);
 			eastPanel.setOpaque(false);
 			northPanel.setOpaque(false);
 			
@@ -67,9 +67,6 @@ public class JoinWindow implements ActionListener{
 			if(e.getSource() == homeButton){
 				gui.switchScreens(GUI.SCREENS_HOME);
 			}
-		}
-		public JPanel getJoinWindow(){
-			return mainPanel;
 		}
 		
 	}

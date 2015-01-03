@@ -12,12 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-public class GameWindow implements ActionListener{
+public class GameWindow extends JPanel implements ActionListener{
 	
 	
 
 		GUI gui;
-		JPanel mainPanel = new JPanel(new BorderLayout());
 		JPanel eastPanel = new JPanel();
 		JLabel title = new JLabel("Game");
 		//east panel
@@ -26,13 +25,14 @@ public class GameWindow implements ActionListener{
 		Color greenButton = new Color (5,210,32);
 		
 		public GameWindow(GUI gui) {
+			super(new BorderLayout());
 			this.gui = gui;
 			assemble();
 		}
 		
 		public void assemble(){
 			//east
-			mainPanel.add(BorderLayout.EAST,eastPanel);
+			add(BorderLayout.EAST,eastPanel);
 			eastPanel.add(title);
 			eastPanel.add(homeButton);
 			homeButton.addActionListener(this);
@@ -40,7 +40,7 @@ public class GameWindow implements ActionListener{
 			
 			
 			eastPanel.setOpaque(false);
-			mainPanel.setOpaque(false);
+			setOpaque(false);
 			
 		}
 
@@ -49,9 +49,6 @@ public class GameWindow implements ActionListener{
 			if(e.getSource() == homeButton){
 				gui.switchScreens(GUI.SCREENS_HOME);
 			}
-		}
-		public JPanel getGameWindow(){
-			return mainPanel;
 		}
 
 }

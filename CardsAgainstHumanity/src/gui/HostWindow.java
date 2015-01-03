@@ -9,9 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class HostWindow implements ActionListener{
+public class HostWindow extends JPanel implements ActionListener{
 	GUI gui;
-	JPanel mainPanel = new JPanel(new BorderLayout());
 	
 	//northPanel
 	
@@ -30,10 +29,13 @@ public class HostWindow implements ActionListener{
 	JButton start = new JButton("Start!");
 	JButton homeButton = new JButton("Home");
 	Color greenButton = new Color (5,210,32);
-		public HostWindow(GUI gui){
-			this.gui = gui;
-			assemble();
-		}
+	
+	
+	public HostWindow(GUI gui){
+		super(new BorderLayout());
+		this.gui = gui;
+		assemble();
+	}
 	
 
 	@Override
@@ -59,7 +61,7 @@ public class HostWindow implements ActionListener{
 	public void assemble(){
 		
 		//center
-		mainPanel.add(BorderLayout.CENTER,centerPanel);
+		add(BorderLayout.CENTER,centerPanel);
 		centerPanel.add(nameLabel);
 		centerPanel.add(name);
 		centerPanel.add(passwordLabel);
@@ -79,10 +81,7 @@ public class HostWindow implements ActionListener{
 		homeButton.setBackground(greenButton);
 		homeButton.addActionListener(this);
 		centerPanel.setOpaque(false);
-		mainPanel.setOpaque(false);
-	}
-	public JPanel getHostWindow(){
-		return mainPanel;
+		setOpaque(false);
 	}
 
 }

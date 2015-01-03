@@ -7,11 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-;
 
-public class OptionWindow implements ActionListener{
+
+public class OptionWindow extends JPanel implements ActionListener{
 	GUI gui;
-	JPanel mainPanel = new JPanel(new BorderLayout());
 	
 	//northPanel
 	JPanel northPanel = new JPanel(new GridLayout(1,1,1,1));
@@ -27,39 +26,37 @@ public class OptionWindow implements ActionListener{
 	Color greenButton = new Color (5,210,32);
 	
 	public OptionWindow(GUI gui) {
-	this.gui = gui;
-	assemble();
+		super(new BorderLayout());
+		this.gui = gui;
+		assemble();
 	}
-		public void assemble(){
-			//north
-			mainPanel.add(BorderLayout.NORTH,northPanel);
-			northPanel.add(title);
-			//center
-			mainPanel.add(BorderLayout.CENTER,centerPanel);
-			centerPanel.add(optionsButton);
-			optionsButton.setBackground(greenButton);
-			optionsButton.addActionListener(this);
-			centerPanel.add(homeButton);
-			homeButton.setBackground(greenButton);
-			homeButton.addActionListener(this);
-			
-			centerPanel.setOpaque(false);
-			mainPanel.setOpaque(false);
-			northPanel.setOpaque(false);
-		}
+	public void assemble(){
+		//north
+		add(BorderLayout.NORTH,northPanel);
+		northPanel.add(title);
+		//center
+		add(BorderLayout.CENTER,centerPanel);
+		centerPanel.add(optionsButton);
+		optionsButton.setBackground(greenButton);
+		optionsButton.addActionListener(this);
+		centerPanel.add(homeButton);
+		homeButton.setBackground(greenButton);
+		homeButton.addActionListener(this);
+		
+		centerPanel.setOpaque(false);
+		setOpaque(false);
+		northPanel.setOpaque(false);
+	}
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			if(e.getSource() == optionsButton){
-				//stuff
-			}if(e.getSource() == homeButton){
-				gui.switchScreens(GUI.SCREENS_HOME);
-			}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == optionsButton){
+			//stuff
+		}if(e.getSource() == homeButton){
+			gui.switchScreens(GUI.SCREENS_HOME);
 		}
-		public JPanel getOptionWindow(){
-			return mainPanel;
-		}
+	}
 }
 
 

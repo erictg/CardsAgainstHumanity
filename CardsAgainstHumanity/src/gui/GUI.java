@@ -5,16 +5,9 @@ import java.awt.Color;
 import javax.swing.*;
 
 
-public class GUI {
+public class GUI extends JFrame{
 	GUI gui;
-	//main panel for all GUI windows
-	JFrame mainFrame = new JFrame("CARDS AGAINST HUMANITY");
-	JPanel mainPanel = new JPanel();
-	HomeWindow mainScreen;
-	JoinWindow joinWindow;
-	HostWindow hostWindow;
-	OptionWindow optionsWindow;
-	GameWindow gameWindow;
+	//main panel for all GUI windows\\
 	Color greenBackground = new Color (52,229,76);
 	Color greenButton = new Color (5,210,32);
 	//statics
@@ -26,15 +19,14 @@ public class GUI {
 	public static final int SCREENS_GAME = 4;
 	public GUI(){
 		
-		mainFrame.add(mainPanel);
-		mainFrame.setVisible(true);
-		mainFrame.setSize(800,600);
-		mainFrame.setLocationRelativeTo(null);
+		setVisible(true);
+		setSize(800,600);
+		setLocationRelativeTo(null);
 		System.out.println("work");
-		mainPanel.setBackground(greenBackground);
+		setBackground(greenBackground);
 		
 		switchScreens(GUI.SCREENS_HOME);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		/*try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -57,49 +49,42 @@ public class GUI {
 		switch(screen){
 		case SCREENS_HOME:
 			//removes everything from the holder\
-			mainPanel.removeAll();
+			getContentPane().removeAll();
 			
-			//instantiates main screen
-			mainScreen = new HomeWindow(this);
-			mainScreen.setColors();
 			//adds main panel of main screen to JFrame
-			mainPanel.add(mainScreen.getHomeWindow());
+			getContentPane().add(new HomeWindow(this));
 			
 			//updates the draw
-			mainPanel.updateUI();
+			((JPanel) getContentPane()).updateUI();
 			
 			System.out.println("changed to main panel");
 			break;
 		
 		case SCREENS_JOIN:
-			mainPanel.removeAll();
-			joinWindow= new JoinWindow(this);
-			mainPanel.add(joinWindow.getJoinWindow());
-			mainPanel.updateUI();
+			getContentPane().removeAll();
+			getContentPane().add(new JoinWindow(this));
+			((JPanel) getContentPane()).updateUI();
 			System.out.println("changed to join panel");
 			break;
 			
 		case SCREENS_HOST:
-			mainPanel.removeAll();
-			hostWindow= new HostWindow(this);
-			mainPanel.add(hostWindow.getHostWindow());
-			mainPanel.updateUI();
+			getContentPane().removeAll();
+			getContentPane().add(new HostWindow(this));
+			((JPanel) getContentPane()).updateUI();
 			System.out.println("changed to host panel");
 			break;
 		
 		case SCREENS_GAME:
-			mainPanel.removeAll();
-			gameWindow = new GameWindow(this);
-			mainPanel.add(gameWindow.getGameWindow());
-			mainPanel.updateUI();
+			getContentPane().removeAll();
+			getContentPane().add(new GameWindow(this));
+			((JPanel) getContentPane()).updateUI();
 			System.out.println("changed to game panel");
 			break;
 			
 		case SCREENS_OPTIONS:
-			mainPanel.removeAll();
-			optionsWindow = new OptionWindow(this);
-			mainPanel.add(optionsWindow.getOptionWindow());
-			mainPanel.updateUI();
+			getContentPane().removeAll();
+			getContentPane().add(new OptionWindow(this));
+			((JPanel) getContentPane()).updateUI();
 			System.out.println("changed to game panel");
 			break;
 		

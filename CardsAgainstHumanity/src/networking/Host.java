@@ -14,15 +14,7 @@ public class Host {
 	 * the card czar
 	 */
 	//game control stuff
-	Deck blacks;
-	Deck whites;
-	ArrayList<User> players;
-	boolean everyoneIn;
 	
-	
-	
-	
-	int maxPlayers;
 	
 	
 }
