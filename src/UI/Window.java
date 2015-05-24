@@ -8,8 +8,6 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoDatabase;
 import backend.User;
 
-
-
 public class Window extends JFrame {
 
     public static MongoDatabase database;
@@ -45,12 +43,11 @@ public class Window extends JFrame {
             case LOGIN:
                 getContentPane().add(new LoginPanel(this));
                 break;
-
             case NEW_ACCOUNT:
                 getContentPane().add(new NewAccountPanel(this));
                 break;
             case MAIN_MENU:
-                //getContentPane().add(new MainMenuPanel(this));
+                getContentPane().add(new MainMenuPanel(this));
         }
 
         ((JPanel)getContentPane()).updateUI();

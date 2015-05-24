@@ -85,6 +85,7 @@ public class LoginPanel extends JPanel implements ActionListener{
                 window.user = MongoControl.login(username, password);
                 if(window.user != null){
                     window.switchPanels(Window.MAIN_MENU);
+
                 }else{
                     errorLabel.setText("USERNAME OR PASSWORD ERROR");
                 }
