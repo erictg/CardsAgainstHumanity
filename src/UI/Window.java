@@ -16,7 +16,7 @@ public class Window extends JFrame {
     public static User user;
     public static MongoClient mongoClient;
     public Window(){
-        super("Adapted Chutes and Latters");
+        super("FUCKIN CARDS AGAINST HUMANITY");
         MongoClientURI connectionString = new MongoClientURI("mongodb://erictg97:sabrefan67@ds031932.mongolab.com:31932/colorsgame");
         mongoClient = new MongoClient(connectionString);
         database = mongoClient.getDatabase("colorsgame");
