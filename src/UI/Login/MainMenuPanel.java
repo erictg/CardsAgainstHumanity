@@ -1,6 +1,6 @@
-package UI.Login;
+package ui.login;
 
-import UI.Window;
+import ui.Window;
 
 import javax.swing.*;
 import java.awt.*;

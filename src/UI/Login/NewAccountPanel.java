@@ -1,7 +1,7 @@
-package UI.Login;
+package ui.login;
 import javax.swing.*;
 import java.awt.*;
-import UI.Window;
+import ui.Window;
 import backend.MongoControl;
 import backend.User;
 

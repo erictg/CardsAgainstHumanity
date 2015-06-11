@@ -1,4 +1,4 @@
-package UI;
+package ui;
 
 /**
  * Created by Gretchen on 5/24/2015.
